@@ -5,10 +5,10 @@ import {
   RouterProvider,
   Route,
 } from 'react-router-dom';
-import './index.css';
+import './global.css';
 
 import RootLayout, { loader as rootLayoutLoader } from "./routes/rootLayout";
-import ErrorPage from "./error-page";
+import ErrorPage from "./error";
 import Contact from "./routes/contact";
 import Support from "./routes/support";
 import Mainnet, { loader as mainnetLoader } from "./routes/mainnet";
@@ -20,10 +20,13 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
-    loader: rootLayoutLoader,
     children: [
       {
-        path: "contacts/:contactId",
+        path: '',
+        element: <>Home</>,
+      },
+      {
+        path: 'contacts/:contactId',
         element: <Contact />,
       },
       {
@@ -38,6 +41,9 @@ const router = createBrowserRouter([
       },
       {
         path: 'local',
+        loader: async () => {
+          return localStorage.getItem('test')
+        },
         element: <Local />,
       },
       {
@@ -45,7 +51,8 @@ const router = createBrowserRouter([
         element: <Support />,
       },
     ],
-  }
+  },
+
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
