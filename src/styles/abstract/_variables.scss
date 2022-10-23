@@ -168,9 +168,16 @@
   --gm-neutral-highlight-color: #f8f9fa;
   --gm-neutral-outline-color: #dadce0;
   --global-border-radius: 8px;
-  --primary-color: #1f0644;
-  --secondary-color: #9509D7;
-  --tertiary-color: #d4056a;
+
+  --primary-color: #2962FF;
+  --secondary-color: #FF9800;
+  --tertiary-color: #F23645;
+  --text-color-pale: #8091A7;
+  --icon-color: #6D707B;
+  --text-color: #212121;
+  --background-color: #F0F3FA;
+  --white: #fff;
+
   --third-color: #434242;
   --scrollbarBG: #a1a1a1;
   --link-color: var(--blue-40);
@@ -185,19 +192,14 @@
   --body-background-color: #f3f3f3;
 }
 
-$primary-color: #200645;
-$secondary-color: #3b076b;
-$headerBackgroudColor: #fff;
-$asideBackgroudColor: #fff;
-$mainBackgroundColor: #fafafa;
-
-
 .primary-color {
-  color: $primary-color;
+  color: var(--primary-color);
 }
+
 .secondary-color {
-  color: $secondary-color;
+  color: var(--secondary-color);
 }
+
 .third-color {
-  color: var(--third-color);
+  color: var(--tertiary-color);
 }

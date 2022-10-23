@@ -1,0 +1,65 @@
+// Use
+@use '../abstract/variables' as *;
+
+// Variables
+$loadingBorderColor: var(--black-050) var(--black-050) var(--primary-color) var(--primary-color);
+$r: 60px;
+
+// Loading
+.loading {
+  position: absolute;
+  inset: 0;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+  background-color: var(--background-color);
+  z-index: 999;
+  transition: all 0.5s ease-in-out;
+
+  &:before {
+    content: '';
+    width: $r;
+    height: $r;
+    border-style: solid;
+    border-color: $loadingBorderColor;
+    border-width: 2px;
+    border-radius: 50%;
+    -webkit-animation: spinner 1s linear 0s infinite normal none running;
+    animation: spinner 1s linear 0s infinite normal none running;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('./logo.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30px;
+    filter: grayscale(100%);
+  }
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

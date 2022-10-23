@@ -6,13 +6,14 @@ import {
 
 export default function Local() {
     const data = useLoaderData()
-    console.log(data)
+
     return (
         <>
-            <h1>Local</h1>
-            <form method="post">
+            <h2>Local</h2>
+            <mark>Coming Soon</mark>
+            {/* <form method="post">
                 <button type="submit">New</button>
-            </form>
+            </form> */}
         </>
     );
 }

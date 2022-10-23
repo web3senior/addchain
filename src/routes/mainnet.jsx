@@ -1,31 +1,35 @@
+import { Suspense, useState } from 'react'
 import {
-    Link,
+    Await,
+    defer,
     useLoaderData
-} from "react-router-dom";
+} from 'react-router-dom'
 import { getMainnetNetworks } from '../util/api'
-// import Layout from './components/Layout'
 import Chain from './components/Chain'
+import LoadingSpinner from './components/LoadingSpinner'
+import Header from './components/Header'
+
+export const loader = async () => {
+    return defer({ mainnet: getMainnetNetworks() })
+}
+
 export default function Mainnet() {
-    const data = useLoaderData()
+    const [loaderData, setLoaderData] = useState(useLoaderData())
 
     return (
         <>
+            <Header setLoaderData={setLoaderData} networkType='mainnet' />
             <h2>Mainnet</h2>
-            {(data) ? (
-                <>
-                    {data && data.map((item, i) =>
-                        <Chain data={item} key={i} />
-                    )}
-                </>
-            ) : (
-                <p>
-                    <i>No data</i>
-                </p>
-            )}
+            <Suspense fallback={<LoadingSpinner />}>
+                <Await
+                    resolve={loaderData.mainnet}
+                    errorElement={<p>⚠️Could not load the networks</p>}
+                >
+                    {(loaderMainnet) => {
+                        return <Chain data={loaderMainnet} type='mainnet' />
+                    }}
+                </Await>
+            </Suspense>
         </>
-    );
-}
-
-export const loader = async () => {
-    return await getMainnetNetworks();
+    )
 }

@@ -1,15 +1,24 @@
 export async function getMainnetNetworks() {
     const response = await fetch(`${process.env.REACT_APP_BASE_URL}rpc?type=mainnet`)
     if (!response.ok) {
-        throw { message: 'Failed to fetch mainnet networks', status: 500 }
+        throw new Response('Failed to fetch mainnet networks', { status: 500 })
     }
+    // return null;
     return response.json()
 }
 
 export async function getTestnetNetworks() {
     const response = await fetch(`${process.env.REACT_APP_BASE_URL}rpc?type=testnet`)
     if (!response.ok) {
-        throw { message: 'Failed to fetch testnet networks', status: 500 }
+        throw new Response('Failed to fetch testnet networks', { status: 500 })
+    }
+    return response.json()
+}
+
+export async function searchNetworks(q) {
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}search?q=${q}`)
+    if (!response.ok) {
+        throw new Response('Failed to search networks', { status: 500 })
     }
     return response.json()
 }

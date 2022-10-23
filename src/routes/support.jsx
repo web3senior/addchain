@@ -1,8 +1,8 @@
-import styles from '../styles/modules/Support.module.scss'
+import styles from '../styles/module/Support.module.scss'
 export default function Support() {
     return (
         <>
-            <h1>Donate</h1>
+            <h2>Donate</h2>
             <div className={styles.card}>
                 <div className={styles.cardBody}>
                     <p>
