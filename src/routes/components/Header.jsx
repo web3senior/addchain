@@ -2,20 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import MetaMask from './../../images/MetaMask.svg'
 import { getTestnetNetworks, getMainnetNetworks, searchNetworks } from '../../util/api'
+import Web3 from 'web3'
+
 
 const Header = ({ loaderData, setLoaderData, networkType }) => {
     const [wallet, setWallet] = useState(null)
     let activeClassName = 'active'
+    const web3 = new Web3(Web3.givenProvider)
 
-    const handleWalletConnect = async () => {
-        try {
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-            setWallet(accounts[0])
-
-        } catch (e) {
-            console.error(e)
-        }
-    }
 
     const handleSearch = async (e) => {
 
@@ -30,8 +24,22 @@ const Header = ({ loaderData, setLoaderData, networkType }) => {
         console.log(loaderData)
     }
 
+    const handleWalletConnect = async () => {
+        try {
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+            setWallet(accounts[0])
+
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
     useEffect(() => {
-        handleWalletConnect()
+        // web3.eth.getAccounts()
+        window.setTimeout(() => {
+            if (window.ethereum._state.accounts.length > 0) handleWalletConnect()
+        }, 1000)
+
     }, [])
 
     return (

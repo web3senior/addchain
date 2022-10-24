@@ -1,3 +1,11 @@
+a {
+    color: var(--primary-color)
+}
+
+img {
+    max-width: 200px;
+}
+
 // Card
 .card {
     position: relative;
@@ -6,22 +14,6 @@
     margin-top: 0.8rem;
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-
-
-    &:not([data-shadow="0"]) {
-        box-shadow: rgba(0, 17, 51, 0.05) 0px 3px 15px;
-    }
-
-    &[data-margin="auto"] {
-        max-width: 480px;
-        margin: 0 auto;
-    }
-
-    &:hover[data-shadow="0"] {
-        border-radius: 4px;
-        overflow: hidden;
-        transform: translateY(-2px);
-    }
 }
 
 .card__header {
