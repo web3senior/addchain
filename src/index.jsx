@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-} from 'react-router-dom';
-import './global.css';
+  Navigate,
+} from 'react-router-dom'
+import './global.css'
 
 import RootLayout, { loader as rootLayoutLoader } from "./routes/rootLayout";
 import ErrorPage from "./error";
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <>Home</>,
+        element: <Navigate to="/mainnet" replace={true} />,
       },
       {
         path: 'contacts/:contactId',

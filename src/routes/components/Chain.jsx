@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styles from '../../styles/module/Chain.module.scss'
-import Web3 from "web3";
+import Web3 from "web3"
 
 const Chain = ({ data, type }) => {
-    const { ethereum } = window;
+    const { ethereum } = window
     const web3 = new Web3(Web3.givenProvider)
-
-    console.log(web3.utils.hexToNumber('0x3'))
 
     const handleAddNetwork = async (name, url, id, symbol, blockExplorerUrls) => {
         try {
@@ -81,7 +79,7 @@ const Chain = ({ data, type }) => {
                                 JSON.parse(item.data).nativeCurrency.symbol,
                                 JSON.parse(item.data).blockExplorerUrls,
                             )
-                        }}>Add Network</button>
+                        }} title='This will allow this network to be used within MetaMask.'>Add Network</button>
                     </div>
                 </div>
             )}

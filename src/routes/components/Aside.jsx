@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'
 import logo from '../../../src/logo.svg'
 
 const Aside = () => {
@@ -33,7 +33,7 @@ const Aside = () => {
                         </li>
 
                         <li>
-                            <NavLink to='/testnet' className={({ isActive }) => isActive ? activeClassName : undefined}>
+                            <NavLink to={`/testnet`} className={({ isActive }) => isActive ? activeClassName : undefined}>
                                 <svg width="45" height="45" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">
                                     <g clipPath="url(#clip0_8_540)">
                                         <path d="M33.225 40H10.725C10.3935 40 10.0755 40.1317 9.84109 40.3661C9.60667 40.6005 9.47498 40.9185 9.47498 41.25C9.47498 41.5815 9.60667 41.8995 9.84109 42.1339C10.0755 42.3683 10.3935 42.5 10.725 42.5H33.225C33.5565 42.5 33.8744 42.3683 34.1089 42.1339C34.3433 41.8995 34.475 41.5815 34.475 41.25C34.475 40.9185 34.3433 40.6005 34.1089 40.3661C33.8744 40.1317 33.5565 40 33.225 40Z" />
@@ -50,7 +50,7 @@ const Aside = () => {
                         </li>
 
                         <li>
-                            <NavLink to={`local`} className={({ isActive }) => isActive ? activeClassName : undefined}>
+                            <NavLink to={`/local`} className={({ isActive }) => isActive ? activeClassName : undefined}>
                                 <svg width="45" height="45" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">
                                     <g clipPath="url(#clip0_8_498)">
                                         <path d="M42.3875 23.0875L38.475 10.5125C38.3175 10.0022 38.0007 9.55585 37.571 9.23868C37.1414 8.92152 36.6215 8.75027 36.0875 8.75H8.9125C8.37848 8.75027 7.85858 8.92152 7.42895 9.23868C6.99932 9.55585 6.68253 10.0022 6.525 10.5125L2.6125 23.1C2.53832 23.3388 2.5004 23.5874 2.5 23.8375V33.75C2.5 34.413 2.76339 35.0489 3.23223 35.5178C3.70107 35.9866 4.33696 36.25 5 36.25H40C40.663 36.25 41.2989 35.9866 41.7678 35.5178C42.2366 35.0489 42.5 34.413 42.5 33.75V23.825C42.4996 23.5749 42.4617 23.3263 42.3875 23.0875ZM40 33.75H5V23.825L8.9125 11.25H36.0875L40 23.825V33.75Z" />

@@ -1,16 +1,14 @@
 import { useState } from "react";
-import {
-    Outlet,
-    Link,
-    useLoaderData
-} from "react-router-dom";
-import Web3 from "web3";
+import { useLoaderData } from 'react-router-dom'
+import Heading from './helper/Heading'
+import Web3 from 'web3'
+import { Title } from './helper/DocumentTitle'
 
 export default function Local() {
+    Title('Local Networks')
     const [data, setData] = useState(useLoaderData())
     const { ethereum } = window;
     const web3 = new Web3(Web3.givenProvider)
-
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -64,8 +62,7 @@ export default function Local() {
 
     return (
         <>
-            <h2>Local</h2>
-
+            <Heading name='Local' />
             <output id='output'>
                 {
                     data && (

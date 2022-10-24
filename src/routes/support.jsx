@@ -1,5 +1,8 @@
+import { Title } from './helper/DocumentTitle'
 import styles from '../styles/module/Support.module.scss'
+
 export default function Support() {
+    Title('Donate')
     return (
         <>
             <h2>Donate</h2>
