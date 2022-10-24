@@ -7,14 +7,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="All in one place to manage EVM lists (Mainnet, Testnet, Local)" />
+  <meta name="keywords"
+    content="add chain, RPC list, RPC nodes, Etheruem EVM, networks list, blockchain networks, blockchain RPC" />
+  <meta name="theme-color" content="#2962FF" />
+  <meta name="Author" content="Amir Rahimi" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/android-chrome-192x192.png" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <title>Add Chain</title>
+  <title>%REACT_APP_NAME%</title>
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((reg) => console.log('Success: ', reg.scope))
+          .catch((err) => console.log('Failure: ', err));
+      })
+    }
+  </script>
 </body>
 
 </html>
