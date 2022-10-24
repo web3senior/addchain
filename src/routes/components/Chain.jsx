@@ -1,43 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../styles/module/Chain.module.scss'
+import Web3 from "web3";
 
 const Chain = ({ data, type }) => {
-    console.log(data)
+    const { ethereum } = window;
+    const web3 = new Web3(Web3.givenProvider)
 
-    const check = async () => {
-        console.log('check')
+    console.log(web3.utils.hexToNumber('0x3'))
+
+    const handleAddNetwork = async (name, url, id, symbol, blockExplorerUrls) => {
         try {
-
-            await window.ethereum.request(
-                {
-                    "jsonrpc": "2.0",
-                    "method": "wallet_addEthereumChain",
-                    "params": [
-                        {
-                            "chainId": "0x64",
-                            "chainName": "Gnosis",
-                            "rpcUrls": [
-                                "https://rpc.gnosischain.com"
-                            ],
-                            "iconUrls": [
-                                "https://xdaichain.com/fake/example/url/xdai.svg",
-                                "https://xdaichain.com/fake/example/url/xdai.png"
-                            ],
-                            "nativeCurrency": {
-                                "name": "xDAI",
-                                "symbol": "xDAI",
-                                "decimals": 18
+            await ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: web3.utils.toHex(id) }],
+            });
+        } catch (switchError) {
+            // This error code indicates that the chain has not been added to MetaMask.
+            if (switchError.code === 4902) {
+                try {
+                    await ethereum.request({
+                        method: 'wallet_addEthereumChain',
+                        params: [
+                            {
+                                "chainId": web3.utils.toHex(id),
+                                "chainName": name,
+                                "rpcUrls": url,
+                                "nativeCurrency": {
+                                    "name": symbol,
+                                    "symbol": symbol,
+                                    "decimals": 18
+                                },
+                                "blockExplorerUrls": blockExplorerUrls
                             },
-                            "blockExplorerUrls": [
-                                "https://blockscout.com/xdai/mainnet"
-                            ]
-                        }
-                    ],
-                    "id": 0
+                        ],
+                    });
+                } catch (addError) {
+                    // handle "add" error
                 }
-            );
-        } catch (error) {
-            console.error(error);
+            }
+            // handle other "switch" errors
         }
     }
 
@@ -48,7 +49,7 @@ const Chain = ({ data, type }) => {
                     <div className={styles.chain__header}>
                         <div>
                             <div className={styles.chain__header__icon}>
-                                <img alt={`logo`} src={JSON.parse(item.data).iconUrls[0]} />
+                                <img alt={`logo`} src={item.logo} />
                             </div>
 
                             <h4>{JSON.parse(item.data).chainName}</h4>
@@ -63,16 +64,24 @@ const Chain = ({ data, type }) => {
                         <ul>
                             <li>
                                 <span>Chain ID</span>
-                                <span>1</span>
+                                <span>{JSON.parse(item.data).chainId}</span>
                             </li>
                             <li>
                                 <span>Currency</span>
-                                <span>ETH</span>
+                                <span>{JSON.parse(item.data).nativeCurrency.symbol}</span>
                             </li>
                         </ul>
                     </div>
                     <div className={styles.chain__footer}>
-                        <button onClick={() => { check() }}>Add Network</button>
+                        <button onClick={() => {
+                            handleAddNetwork(
+                                JSON.parse(item.data).chainName,
+                                JSON.parse(item.data).rpcUrls,
+                                JSON.parse(item.data).chainId,
+                                JSON.parse(item.data).nativeCurrency.symbol,
+                                JSON.parse(item.data).blockExplorerUrls,
+                            )
+                        }}>Add Network</button>
                     </div>
                 </div>
             )}

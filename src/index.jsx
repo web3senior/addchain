@@ -42,7 +42,7 @@ const router = createBrowserRouter([
       {
         path: 'local',
         loader: async () => {
-          return localStorage.getItem('test')
+          return localStorage.getItem('rpc')
         },
         element: <Local />,
       },

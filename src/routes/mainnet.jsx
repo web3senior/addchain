@@ -18,7 +18,7 @@ export default function Mainnet() {
 
     return (
         <>
-            <Header setLoaderData={setLoaderData} networkType='mainnet' />
+            <Header loaderData={loaderData} setLoaderData={setLoaderData} networkType='mainnet' />
             <h2>Mainnet</h2>
             <Suspense fallback={<LoadingSpinner />}>
                 <Await

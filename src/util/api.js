@@ -15,8 +15,8 @@ export async function getTestnetNetworks() {
     return response.json()
 }
 
-export async function searchNetworks(q) {
-    const response = await fetch(`${process.env.REACT_APP_BASE_URL}search?q=${q}`)
+export async function searchNetworks(q, type) {
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}search?q=${q}&type=${type}`)
     if (!response.ok) {
         throw new Response('Failed to search networks', { status: 500 })
     }

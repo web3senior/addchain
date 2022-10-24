@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MetaMask from './../../images/MetaMask.svg'
 import { getTestnetNetworks, getMainnetNetworks, searchNetworks } from '../../util/api'
 
-const Header = ({ setLoaderData, networkType }) => {
+const Header = ({ loaderData, setLoaderData, networkType }) => {
     const [wallet, setWallet] = useState(null)
     // const [wallet, setWallet] = useState(null)
 
@@ -18,10 +18,14 @@ const Header = ({ setLoaderData, networkType }) => {
 
     const handleSearch = async (e) => {
         if (e.target.value.length >= 3) {
-            setLoaderData({ mainnet: await searchNetworks(e.target.value) })
+            let result = await searchNetworks(e.target.value, networkType)
+            setLoaderData((networkType === 'mainnet' ? { mainnet: result } : { testnet: result }))
         } else {
-            setLoaderData({ mainnet: (networkType === 'mainnet') ? await getMainnetNetworks() : await getTestnetNetworks() })
+            let result = (networkType === 'mainnet') ? await getMainnetNetworks() : await getTestnetNetworks()
+            setLoaderData((networkType === 'mainnet' ? { mainnet: result } : { testnet: result }))
         }
+
+        console.log(loaderData)
     }
 
     useEffect(() => {

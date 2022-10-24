@@ -23,6 +23,18 @@ a {
     box-sizing: border-box;
 }
 
+table {
+    border-collapse: collapse;
+    background-color: #fff;
+    width: 100%;
+
+    td {
+        border: 1px solid #e3e3e3;
+
+    }
+
+}
+
 @media (prefers-color-scheme: dark) {
     html {
         color-scheme: dark;
@@ -103,7 +115,7 @@ main {
 
 // Header
 header {
-    padding: 1rem;
+    padding: 1rem 0;
 
     input {
         border: none;

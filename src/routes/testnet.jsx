@@ -18,7 +18,7 @@ export default function Testnet() {
 
     return (
         <>
-            <Header setLoaderData={setLoaderData} networkType='mainnet' />
+            <Header loaderData={loaderData} setLoaderData={setLoaderData} networkType='testnet' />
             <h2>Testnet</h2>
             <Suspense fallback={<LoadingSpinner />}>
                 <Await
